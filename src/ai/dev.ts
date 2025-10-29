@@ -1,1 +1,5 @@
-// Flows will be imported for their side effects in this file.
+import { config } from 'dotenv';
+config();
+
+import '@/ai/flows/enhance-job-search-with-ai-suggestions.ts';
+import '@/ai/flows/summarize-applications.ts';
