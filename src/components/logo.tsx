@@ -5,11 +5,12 @@ export const Logo = ({ className }: { className?: string }) => {
   return (
     <Link href="/" className={cn("flex items-center gap-2 text-lg font-bold font-headline text-primary", className)}>
       <svg
-        className="h-8 w-8 text-accent"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 100 100"
+        className="h-8 w-8 text-primary"
         width="100"
         height="100"
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
           d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z"
