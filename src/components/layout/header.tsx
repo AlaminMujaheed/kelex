@@ -39,12 +39,6 @@ export const Header = () => {
                 className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
                 />
             </div>
-            <Link href="/login">
-                <Button variant="ghost">Login</Button>
-            </Link>
-            <Link href="/signup">
-                <Button>Sign Up</Button>
-            </Link>
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
