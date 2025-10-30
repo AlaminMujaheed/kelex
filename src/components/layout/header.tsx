@@ -3,16 +3,17 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
-import { Menu } from 'lucide-react';
+import { Menu, Search } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Input } from '../ui/input';
 
 export const Header = () => {
   const navLinks = [
-    { href: '#', label: 'Find a Job' },
+    { href: '/login', label: 'Find a Job' },
     { href: '#', label: 'Employers' },
     { href: '#', label: 'Agencies' },
     { href: '#', label: 'About Us' },
@@ -30,12 +31,20 @@ export const Header = () => {
           ))}
         </nav>
         <div className="ml-auto flex items-center gap-4">
-          <Button variant="ghost" asChild>
-            <Link href="/login">Login</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/signup">Sign Up</Link>
-          </Button>
+            <div className="relative ml-auto flex-1 md:grow-0">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                type="search"
+                placeholder="Search..."
+                className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
+                />
+            </div>
+            <Link href="/login">
+                <Button variant="ghost">Login</Button>
+            </Link>
+            <Link href="/signup">
+                <Button>Sign Up</Button>
+            </Link>
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
