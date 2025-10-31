@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Logo } from '@/components/logo';
-import { Menu, Search } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
@@ -23,22 +23,14 @@ export const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <Logo className="mr-8" />
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          {navLinks.map(link => (
-            <Link key={link.label} href={link.href} className="text-muted-foreground transition-colors hover:text-foreground">
-              {link.label}
-            </Link>
-          ))}
-        </nav>
         <div className="ml-auto flex items-center gap-4">
-            <div className="relative ml-auto flex-1 md:grow-0">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input
-                type="search"
-                placeholder="Search..."
-                className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
-                />
-            </div>
+          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+            {navLinks.map(link => (
+              <Link key={link.label} href={link.href} className="text-muted-foreground transition-colors hover:text-foreground">
+                {link.label}
+              </Link>
+            ))}
+          </nav>
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
