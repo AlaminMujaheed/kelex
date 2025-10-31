@@ -57,7 +57,9 @@ export default function DashboardPage() {
                                 <span className="text-sm text-muted-foreground">Applied</span>
                             </li>
                         </ul>
-                        <Button variant="outline" className="w-full mt-6">View All Applications</Button>
+                        <Button variant="outline" className="w-full mt-6" asChild>
+                           <Link href="/dashboard/applications">View All Applications</Link>
+                        </Button>
                     </CardContent>
                 </Card>
 
@@ -87,7 +89,9 @@ export default function DashboardPage() {
                                 </Button>
                             </li>
                         </ul>
-                        <Button variant="outline" className="w-full mt-6">Browse More Jobs</Button>
+                        <Button variant="outline" className="w-full mt-6" asChild>
+                           <Link href="/#job-search">Browse More Jobs</Link>
+                        </Button>
                     </CardContent>
                 </Card>
             </div>

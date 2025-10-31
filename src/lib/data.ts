@@ -1,4 +1,4 @@
-import type { Job, Company } from './types';
+import type { Job, Company, Application, User } from './types';
 import { PlaceHolderImages } from './placeholder-images';
 
 const getLogo = (seed: string) => PlaceHolderImages.find(img => img.id === seed)?.imageUrl || 'https://picsum.photos/seed/default/100/100';
@@ -11,6 +11,14 @@ const companies: Company[] = [
   { id: 'comp-5', name: 'Constructo Corp', logoUrl: getLogo('logo-5'), industry: 'Construction' },
   { id: 'comp-6', name: 'EduVerse', logoUrl: getLogo('logo-6'), industry: 'Education' },
 ];
+
+const mockUser: User = {
+    id: 'user-1',
+    name: 'Jane Doe',
+    email: 'jane.doe@example.com',
+    role: 'Job Seeker',
+    avatarUrl: PlaceHolderImages.find(img => img.id === 'user-avatar-1')?.imageUrl
+};
 
 export const mockJobs: Job[] = [
   {
@@ -97,4 +105,43 @@ export const mockJobs: Job[] = [
     description: 'EduVerse is seeking a creative Curriculum Developer to design and develop engaging learning materials for our e-learning platform. You will work with subject matter experts to create content that is instructionally sound and visually appealing.',
     postedAt: new Date('2024-05-17'),
   },
+];
+
+
+export const mockApplications: Application[] = [
+  {
+    id: 'app-1',
+    job: mockJobs[0],
+    applicant: mockUser,
+    status: 'Reviewed',
+    appliedAt: new Date('2024-05-22'),
+  },
+  {
+    id: 'app-2',
+    job: mockJobs[4],
+    applicant: mockUser,
+    status: 'Applied',
+    appliedAt: new Date('2024-05-21'),
+  },
+  {
+    id: 'app-3',
+    job: mockJobs[1],
+    applicant: mockUser,
+    status: 'Interviewing',
+    appliedAt: new Date('2024-05-19'),
+  },
+    {
+    id: 'app-4',
+    job: mockJobs[6],
+    applicant: mockUser,
+    status: 'Shortlisted',
+    appliedAt: new Date('2024-05-18'),
+  },
+   {
+    id: 'app-5',
+    job: mockJobs[2],
+    applicant: mockUser,
+    status: 'Rejected',
+    appliedAt: new Date('2024-05-15'),
+  }
 ];
