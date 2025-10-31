@@ -14,7 +14,7 @@ export default function Home() {
               Find Your Next Opportunity
             </h1>
             <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-muted-foreground">
-              NextGen NELEX is Nigeria's leading employment platform, connecting talent with top employers and agencies.
+              Building Careers, Creating Futures — The Kano State Government’s Public–Private Employment Drive
             </p>
             <div className="mt-8 flex justify-center gap-4">
               <Button size="lg">Get Started</Button>
