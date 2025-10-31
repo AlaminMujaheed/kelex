@@ -12,7 +12,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="bg-card py-20 md:py-32">
+    <section className="bg-secondary/20 py-20 md:py-32">
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-4xl md:text-6xl font-bold font-headline text-primary">
           Find Your Next Opportunity
