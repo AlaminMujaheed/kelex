@@ -1,4 +1,5 @@
 
+
 "use client";
 
 import React, { useState, useMemo } from 'react';
@@ -23,6 +24,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { enhanceJobSearchWithAISuggestions, type JobSearchOutput } from '@/ai/flows/enhance-job-search-with-ai-suggestions';
+import { nigerianStates } from '@/lib/nigeria-states';
 
 
 const JobCard = ({ job }: { job: Job }) => (
@@ -77,7 +79,6 @@ const JobCard = ({ job }: { job: Job }) => (
 
 const JobFilters = ({ filters, setFilters, onReset }: { filters: any, setFilters: any, onReset: () => void }) => {
   const industries = useMemo(() => [...new Set(mockJobs.map(job => job.industry))], []);
-  const locations = useMemo(() => [...new Set(mockJobs.map(job => job.location))], []);
   const experienceLevels = useMemo(() => [...new Set(mockJobs.map(job => job.experienceLevel))], []);
 
   return (
@@ -108,7 +109,7 @@ const JobFilters = ({ filters, setFilters, onReset }: { filters: any, setFilters
             <SelectTrigger><SelectValue placeholder="All Locations" /></SelectTrigger>
             <SelectContent>
               <SelectItem value="all">All Locations</SelectItem>
-              {locations.map(loc => <SelectItem key={loc} value={loc}>{loc}</SelectItem>)}
+              {nigerianStates.map(state => <SelectItem key={state} value={state}>{state}</SelectItem>)}
             </SelectContent>
           </Select>
         </div>
