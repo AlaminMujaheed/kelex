@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Briefcase, Building, Clock, DollarSign, MapPin, Newspaper } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
+import Link from 'next/link';
 
 export default function JobDetailPage({ params }: { params: { id: string } }) {
   const job = mockJobs.find(j => j.id === params.id);
@@ -38,7 +39,7 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
                     <div>
                       <CardTitle className="text-3xl font-headline">{job.title}</CardTitle>
                       <CardDescription className="text-base text-muted-foreground mt-1">
-                        at <a href="#" className="text-primary hover:underline">{job.company.name}</a>
+                        at <span className="text-primary font-semibold">{job.company.name}</span>
                       </CardDescription>
                     </div>
                   </div>
@@ -82,12 +83,16 @@ export default function JobDetailPage({ params }: { params: { id: string } }) {
                   <p className="text-sm text-muted-foreground">
                     {job.company.name} is a leading company in the {job.company.industry} sector, committed to innovation and excellence.
                   </p>
-                  <Button variant="secondary" className="w-full mt-4">View Company Profile</Button>
+                  <Button variant="secondary" className="w-full mt-4" asChild>
+                    <Link href="/login">View Company Profile</Link>
+                  </Button>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-6">
-                  <Button className="w-full text-lg" size="lg">Apply Now <Newspaper className="ml-2 h-5 w-5" /></Button>
+                  <Button className="w-full text-lg" size="lg" asChild>
+                    <Link href="/login">Apply Now <Newspaper className="ml-2 h-5 w-5" /></Link>
+                  </Button>
                   <p className="text-xs text-muted-foreground mt-3 text-center">Posted {formatDistanceToNow(job.postedAt, { addSuffix: true })}</p>
                 </CardContent>
               </Card>
