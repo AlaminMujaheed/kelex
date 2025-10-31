@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useMemo } from 'react';
@@ -11,7 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Briefcase, Building, Search, SlidersHorizontal, Sparkles } from 'lucide-react';
+import { MapPin, Briefcase, Building, Search, SlidersHorizontal, Sparkles, Loader2 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import {
   Dialog,
@@ -20,7 +21,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog";
+import { enhanceJobSearchWithAISuggestions, type JobSearchOutput } from '@/ai/flows/enhance-job-search-with-ai-suggestions';
 
 
 const JobCard = ({ job }: { job: Job }) => (
@@ -145,6 +147,8 @@ export const JobSearch = () => {
   };
 
   const [filters, setFilters] = useState(initialFilters);
+  const [aiSuggestions, setAiSuggestions] = useState<JobSearchOutput | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleResetFilters = () => setFilters(initialFilters);
 
@@ -159,6 +163,28 @@ export const JobSearch = () => {
       );
     });
   }, [filters]);
+
+  const getSuggestions = async () => {
+    setIsLoading(true);
+    setAiSuggestions(null);
+    try {
+      const profileDetails = "Jane Doe, an experienced full-stack developer with a passion for creating intuitive and dynamic user experiences. Skilled in React, Next.js, TypeScript, and Node.js.";
+      const resumeText = "Full-Stack Developer with 5+ years of experience in building and maintaining web applications. Proven ability to lead projects and collaborate with cross-functional teams to deliver high-quality software.";
+      const jobListings = JSON.stringify(filteredJobs.map(j => ({title: j.title, description: j.description})).slice(0, 10));
+
+      const suggestions = await enhanceJobSearchWithAISuggestions({
+        profileDetails,
+        resumeText,
+        jobListings
+      });
+      setAiSuggestions(suggestions);
+    } catch (error) {
+      console.error("Error getting AI suggestions:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
 
   return (
     <section id="job-search" className="py-16 bg-background">
@@ -183,7 +209,7 @@ export const JobSearch = () => {
               </div>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button variant="outline" className="bg-accent/20 border-accent text-accent-foreground hover:bg-accent/30">
+                  <Button variant="outline" className="bg-accent/20 border-accent text-accent-foreground hover:bg-accent/30" onClick={getSuggestions}>
                     <Sparkles className="mr-2 h-4 w-4" /> Get AI Suggestions
                   </Button>
                 </DialogTrigger>
@@ -194,19 +220,24 @@ export const JobSearch = () => {
                       AI Job Suggestions
                     </DialogTitle>
                     <DialogDescription>
-                      Based on your profile, here are some jobs you might be interested in. This is a mock response.
+                      Based on your profile, here are some jobs you might be interested in.
                     </DialogDescription>
                   </DialogHeader>
-                  <div className="space-y-2 text-sm">
-                    <p><strong>Suggested Jobs:</strong></p>
-                    <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
-                        <li>Senior Frontend Developer</li>
-                        <li>Lead Backend Engineer</li>
-                        <li>Product Manager</li>
-                    </ul>
-                    <p className="pt-2"><strong>Reasoning:</strong></p>
-                    <p className="text-muted-foreground">Your profile shows strong experience in full-stack development and project leadership, making you a great fit for senior technical and management roles.</p>
-                  </div>
+                   {isLoading && (
+                    <div className="flex items-center justify-center p-8">
+                      <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                    </div>
+                  )}
+                  {aiSuggestions && (
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Suggested Jobs:</strong></p>
+                      <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
+                          {aiSuggestions.suggestedJobs.map((job, index) => <li key={index}>{job}</li>)}
+                      </ul>
+                      <p className="pt-2"><strong>Reasoning:</strong></p>
+                      <p className="text-muted-foreground">{aiSuggestions.reasoning}</p>
+                    </div>
+                  )}
                 </DialogContent>
               </Dialog>
             </div>
