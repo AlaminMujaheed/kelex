@@ -2,6 +2,7 @@ import { JobSearch } from "@/components/job-search";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -17,7 +18,9 @@ export default function Home() {
               Building Careers, Creating Futures — The Kano State Government’s Public–Private Employment Drive
             </p>
             <div className="mt-8 flex justify-center gap-4">
-              <Button size="lg">Get Started</Button>
+              <Button size="lg" asChild>
+                <Link href="/login">Get Started</Link>
+              </Button>
               <Button size="lg" variant="secondary">Browse Jobs</Button>
             </div>
           </div>
