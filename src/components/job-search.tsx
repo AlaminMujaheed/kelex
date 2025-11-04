@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Briefcase, Building, Search, SlidersHorizontal, Sparkles, Loader2 } from 'lucide-react';
+import { MapPin, Building, Search, SlidersHorizontal, Sparkles, Loader2 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import {
   Dialog,
@@ -57,10 +57,6 @@ const JobCard = ({ job }: { job: Job }) => (
             <div className="flex items-center gap-2">
               <MapPin className="h-4 w-4" />
               <span>{job.location}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Briefcase className="h-4 w-4" />
-              <span className="capitalize">{job.experienceLevel} Level</span>
             </div>
           </div>
           <div className="mt-4 flex justify-between items-center">
@@ -196,9 +192,11 @@ export const JobSearch = () => {
                   onChange={(e) => setFilters({ ...filters, searchTerm: e.target.value })}
                 />
               </div>
+            </div>
+            <div className="mb-6">
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button variant="outline" className="bg-accent/20 border-accent text-accent-foreground hover:bg-accent/30" onClick={getSuggestions}>
+                  <Button className="w-full" onClick={getSuggestions}>
                     <Sparkles className="mr-2 h-4 w-4" /> Get AI Suggestions
                   </Button>
                 </DialogTrigger>
@@ -229,7 +227,7 @@ export const JobSearch = () => {
                   )}
                 </DialogContent>
               </Dialog>
-            </div>
+              </div>
             <p className="text-muted-foreground mb-6">Showing {filteredJobs.length} of {mockJobs.length} jobs</p>
             <div className="grid grid-cols-1 gap-6">
               {filteredJobs.length > 0 ? (
