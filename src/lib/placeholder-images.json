@@ -1,9 +1,10 @@
+
 {
   "placeholderImages": [
     {
       "id": "logo-1",
       "description": "Kano State Government logo",
-      "imageUrl": "https://storage.googleapis.com/aifirebase/project-images/b48a1c3e-f63b-4569-8051-71261a9b2b5d.png",
+      "imageUrl": "/images/kano-state-logo-small.png",
       "imageHint": "government seal"
     },
     {
@@ -51,7 +52,7 @@
     {
       "id": "hero-background",
       "description": "A cityscape view of Kano, Nigeria, with a focus on modern buildings and infrastructure.",
-      "imageUrl": "https://images.unsplash.com/photo-1629857354738-dd3d5383949f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxrYW5vJTIwbmlnZXJpYSUyMGNpdHlzY2FwZXxlbnwwfHx8fDE3NjE3NzM0MTZ8MA&ixlib=rb-4.1.0&q=80&w=1920",
+      "imageUrl": "/images/logo (3).png",
       "imageHint": "cityscape kano"
     }
   ]

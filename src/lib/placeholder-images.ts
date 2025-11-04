@@ -7,4 +7,9 @@ export type ImagePlaceholder = {
   imageHint: string;
 };
 
-export const PlaceHolderImages: ImagePlaceholder[] = data.placeholderImages;
+const _dataAny: any = data;
+
+export const PlaceHolderImages: ImagePlaceholder[] =
+  Array.isArray(_dataAny)
+    ? (_dataAny[0]?.placeholderImages ?? _dataAny)
+    : (_dataAny.placeholderImages ?? _dataAny);

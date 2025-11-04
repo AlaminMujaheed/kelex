@@ -4,16 +4,20 @@ import { cn } from "@/lib/utils";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
 export const Logo = ({ className }: { className?: string }) => {
-  const logoImage = PlaceHolderImages.find(img => img.id === 'logo-1');
+  const logoImage = PlaceHolderImages.find(img => img.id === "logo-1");
   return (
-    <Link href="/" className={cn("flex items-center gap-2 text-lg font-bold font-headline text-primary", className)}>
+    <Link
+      href="/"
+      className={cn("flex items-center gap-2 text-lg font-bold font-headline text-primary", className)}
+    >
       {logoImage && (
-        <Image 
+        <Image
           src={logoImage.imageUrl}
-          alt="Kano State Government logo"
+          alt={logoImage.description || "Logo"}
           width={36}
           height={36}
           data-ai-hint={logoImage.imageHint}
+          priority
         />
       )}
       <span>KELEX</span>
