@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -6,10 +5,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 export const Logo = ({ className }: { className?: string }) => {
   const logoImage = PlaceHolderImages.find(img => img.id === "logo-1");
   return (
-    <Link
-      href="/"
-      className={cn("flex items-center gap-2 text-lg font-bold font-headline text-primary", className)}
-    >
+    <Link href="/" className={cn("flex items-center gap-2 text-lg font-bold font-headline text-primary", className)}>
       {logoImage && (
         <Image
           src={logoImage.imageUrl}
@@ -21,6 +17,6 @@ export const Logo = ({ className }: { className?: string }) => {
         />
       )}
       <span>KELEX</span>
-    </Link>
+    </div>
   );
 };
