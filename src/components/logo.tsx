@@ -10,9 +10,9 @@ export const Logo = ({ className }: { className?: string }) => {
       {logoImage && (
         <Image 
           src={logoImage.imageUrl}
-          alt="KELEX logo"
-          width={28}
-          height={28}
+          alt="Kano State Government logo"
+          width={36}
+          height={36}
           data-ai-hint={logoImage.imageHint}
         />
       )}
