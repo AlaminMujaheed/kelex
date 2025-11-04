@@ -57,15 +57,10 @@ export const Footer = () => {
         
         <Separator className="my-8" />
         
-        <div className="flex flex-col-reverse sm:flex-row justify-between items-center">
-          <p className="text-muted-foreground text-sm mt-4 sm:mt-0">
+        <div className="flex justify-center items-center">
+          <p className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} KELEX. All rights reserved.
           </p>
-          <div className="flex gap-4">
-            <Link href="#" className="text-muted-foreground hover:text-primary transition-colors"><Github className="h-5 w-5" /></Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary transition-colors"><Twitter className="h-5 w-5" /></Link>
-            <Link href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="h-5 w-5" /></Link>
-          </div>
         </div>
       </div>
     </footer>
