@@ -13,12 +13,6 @@ export const Footer = () => {
       { href: '#', label: 'Employers' },
       { href: '#', label: 'Agencies' },
     ],
-    'Support': [
-      { href: '#', label: 'Contact Us' },
-      { href: '#', label: 'Help Center' },
-      { href: '#', label: 'Privacy Policy' },
-      { href: '#', label: 'Terms of Service' },
-    ],
   }
 
   return (
