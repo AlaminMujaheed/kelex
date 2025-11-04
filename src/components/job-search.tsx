@@ -79,7 +79,6 @@ const JobCard = ({ job }: { job: Job }) => (
 
 const JobFilters = ({ filters, setFilters, onReset }: { filters: any, setFilters: any, onReset: () => void }) => {
   const industries = useMemo(() => [...new Set(mockJobs.map(job => job.industry))], []);
-  const experienceLevels = useMemo(() => [...new Set(mockJobs.map(job => job.experienceLevel))], []);
 
   return (
     <Card>
@@ -113,16 +112,7 @@ const JobFilters = ({ filters, setFilters, onReset }: { filters: any, setFilters
             </SelectContent>
           </Select>
         </div>
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Experience Level</label>
-          <Select value={filters.experienceLevel} onValueChange={(value) => setFilters({ ...filters, experienceLevel: value })}>
-            <SelectTrigger><SelectValue placeholder="All Levels" /></SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Levels</SelectItem>
-              {experienceLevels.map(exp => <SelectItem key={exp} value={exp}>{exp}</SelectItem>)}
-            </SelectContent>
-          </Select>
-        </div>
+        
         <div className="space-y-2">
           <label className="text-sm font-medium">Max Salary (₦{filters.maxSalary.toLocaleString()}/month)</label>
           <Slider
@@ -143,7 +133,6 @@ export const JobSearch = () => {
     searchTerm: '',
     industry: 'all',
     location: 'all',
-    experienceLevel: 'all',
     maxSalary: 1000000
   };
 
@@ -159,7 +148,6 @@ export const JobSearch = () => {
         (filters.searchTerm === '' || job.title.toLowerCase().includes(filters.searchTerm.toLowerCase()) || job.company.name.toLowerCase().includes(filters.searchTerm.toLowerCase())) &&
         (filters.industry === 'all' || job.industry === filters.industry) &&
         (filters.location === 'all' || job.location === filters.location) &&
-        (filters.experienceLevel === 'all' || job.experienceLevel === filters.experienceLevel) &&
         (job.salary.min <= filters.maxSalary)
       );
     });
